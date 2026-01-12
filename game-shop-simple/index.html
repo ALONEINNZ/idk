@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - Your Digital Game Store</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-brand i {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+
+        .btn-outline:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            margin-top: 80px;
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-header h2 {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filters select,
+        .filters input {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background: white;
+            min-width: 150px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .game-info {
+            padding: 1.5rem;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .game-description {
+            color: #666;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .game-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .game-category {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .cart-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .cart-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 3000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .message.success {
+            background: #2ed573;
+        }
+
+        .message.error {
+            background: #ff4757;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filters {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-gamepad"></i>
+                <span>GameHub</span>
+            </div>
+            <div class="nav-menu">
+                <a class="nav-link" onclick="showHome()">Home</a>
+                <a class="nav-link" onclick="showGames()">Games</a>
+                <button onclick="showMessage('Login feature coming soon!', 'success')" class="btn btn-outline">Login</button>
+                <button onclick="showMessage('Sign up feature coming soon!', 'success')" class="btn btn-primary">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="homeSection" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to GameHub</h1>
+                <p>Discover and purchase the latest digital games</p>
+                <button onclick="showGames()" class="btn btn-primary btn-large">Browse Games</button>
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section id="gamesSection" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Game Library</h2>
+                    <div class="filters">
+                        <select id="categoryFilter" onchange="filterGames()">
+                            <option value="">All Categories</option>
+                            <option value="Action">Action</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                            <option value="Strategy">Strategy</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Racing">Racing</option>
+                            <option value="Puzzle">Puzzle</option>
+                            <option value="Indie">Indie</option>
+                        </select>
+                        <input type="text" id="searchInput" placeholder="Search games..." onkeyup="searchGames()">
+                    </div>
+                </div>
+                <div id="gamesGrid" class="games-grid">
+                    <!-- Games will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Toggle Button -->
+        <button id="cartToggle" class="cart-toggle" onclick="showMessage('Cart feature coming soon!', 'success')">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cartCount" class="cart-count">0</span>
+        </button>
+    </main>
+
+    <script>
+        // Sample game data
+        const sampleGames = [
+            {
+                id: 1,
+                title: "Cyber Adventure 2077",
+                description: "An epic cyberpunk adventure in a dystopian future. Explore vast cities and make choices that matter.",
+                price: 59.99,
+                category: "Action",
+                icon: "🎮"
+            },
+            {
+                id: 2,
+                title: "Fantasy Quest RPG",
+                description: "Embark on a magical journey through enchanted lands. Level up your character and discover ancient secrets.",
+                price: 39.99,
+                category: "RPG",
+                icon: "⚔️"
+            },
+            {
+                id: 3,
+                title: "Space Strategy Empire",
+                description: "Build your galactic empire and conquer the stars. Command fleets and manage resources across planets.",
+                price: 49.99,
+                category: "Strategy",
+                icon: "🚀"
+            },
+            {
+                id: 4,
+                title: "Racing Thunder",
+                description: "High-speed racing action with stunning graphics. Customize your cars and race on exotic tracks.",
+                price: 29.99,
+                category: "Racing",
+                icon: "🏎️"
+            },
+            {
+                id: 5,
+                title: "Puzzle Master",
+                description: "Challenge your mind with hundreds of unique puzzles. Perfect for casual gaming sessions.",
+                price: 19.99,
+                category: "Puzzle",
+                icon: "🧩"
+            },
+            {
+                id: 6,
+                title: "Indie Platformer",
+                description: "A charming indie game with beautiful pixel art and challenging platforming mechanics.",
+                price: 14.99,
+                category: "Indie",
+                icon: "🎨"
+            }
+        ];
+
+        let currentGames = sampleGames;
+
+        function showHome() {
+            document.getElementById('homeSection').style.display = 'block';
+            document.getElementById('gamesSection').style.display = 'none';
+        }
+
+        function showGames() {
+            document.getElementById('homeSection').style.display = 'none';
+            document.getElementById('gamesSection').style.display = 'block';
+            displayGames(currentGames);
+        }
+
+        function displayGames(games) {
+            const gamesGrid = document.getElementById('gamesGrid');
+            
+            if (games.length === 0) {
+                gamesGrid.innerHTML = '<p style="color: white; text-align: center; grid-column: 1/-1;">No games found.</p>';
+                return;
+            }
+            
+            gamesGrid.innerHTML = games.map(game => `
+                <div class="game-card" onclick="showGameDetails('${game.title}')">
+                    <div class="game-image">${game.icon}</div>
+                    <div class="game-info">
+                        <h3 class="game-title">${game.title}</h3>
+                        <p class="game-description">${game.description}</p>
+                        <div class="game-category">${game.category}</div>
+                        <div class="game-price">$${game.price.toFixed(2)}</div>
+                        <button onclick="event.stopPropagation(); addToCart('${game.title}')" class="btn btn-primary">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGames() {
+            const category = document.getElementById('categoryFilter').value;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            
+            currentGames = sampleGames.filter(game => {
+                const matchesCategory = !category || game.category === category;
+                const matchesSearch = !search || 
+                    game.title.toLowerCase().includes(search) || 
+                    game.description.toLowerCase().includes(search);
+                return matchesCategory && matchesSearch;
+            });
+            
+            displayGames(currentGames);
+        }
+
+        function searchGames() {
+            filterGames();
+        }
+
+        function addToCart(gameTitle) {
+            showMessage(`${gameTitle} added to cart! (Demo version)`, 'success');
+            
+            // Update cart count for demo
+            const cartCount = document.getElementById('cartCount');
+            cartCount.textContent = parseInt(cartCount.textContent) + 1;
+        }
+
+        function showGameDetails(gameTitle) {
+            showMessage(`Opening details for ${gameTitle}... (Demo version)`, 'success');
+        }
+
+        function showMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = message;
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            showHome();
+        });
+    </script>
+</body>
+</html>

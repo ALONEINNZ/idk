@@ -1,0 +1,28 @@
+{
+  "Default Team Size": 5,
+  "Round Win Requirement": 13,
+  "Side Swap Round": 12,
+  "Buy Phase Duration": 20.0,
+  "Buy Menu Duration": 40.0,
+  "Bomb Timer": 40.0,
+  "Max Team Damage": 300.0,
+  "Max Grenade Damage": 60.0,
+  "Lobby Spawn Point": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "Auto Generate Default Maps": true,
+  "Default Map Template": "custom",
+  "Map Generation On Server Start": true,
+  "Server Map Name": "cs2_server_map",
+  "Map Generation Center": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "Auto Detect Map Center": true,
+  "Backup Map Configurations": true,
+  "Map Generation Timeout": 300.0,
+  "Enable Map Validation": true
+}
