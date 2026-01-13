@@ -18,7 +18,20 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <span class="nav-logo">🔥 ExusCraft</span>
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="16" cy="16" r="3" fill="white"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff6b6b"/>
+                                <stop offset="100%" style="stop-color:#4ecdc4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">ExusCraft</span>
+                </div>
             </div>
             <div class="nav-menu">
                 <a class="nav-link" href="#" onclick="window.checkLoginAndNavigate ? window.checkLoginAndNavigate('mods') : checkLoginAndNavigate('mods')">All Mods</a>
@@ -39,14 +52,29 @@
                     </div>
                 </div>
                 <a class="nav-link" href="#" onclick="window.checkLoginAndNavigate ? window.checkLoginAndNavigate('free-mods') : checkLoginAndNavigate('free-mods')">Free Mods</a>
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
             </div>
             <div class="nav-auth" id="navAuth">
-                <button onclick="window.testLogin ? window.testLogin() : showLogin()" class="btn btn-outline">Login</button>
-                <button onclick="window.testRegister ? window.testRegister() : showRegister()" class="btn btn-primary">Join Now</button>
+                <button onclick="showLogin()" class="btn btn-outline">Login</button>
+                <button onclick="showRegister()" class="btn btn-primary">Join Now</button>
             </div>
             <div class="nav-user" id="navUser" style="display: none;">
-                <span id="username"></span>
-                <button onclick="logout()" class="btn btn-outline">Logout</button>
+                <div class="user-profile-dropdown">
+                    <button class="user-avatar" onclick="toggleUserMenu()">
+                        <img id="userAvatar" src="https://via.placeholder.com/32x32/ff6b6b/ffffff?text=U" alt="User Avatar">
+                        <span id="username"></span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#" onclick="showProfile()"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#" onclick="showOrders()"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                        <a href="#" onclick="showSettings()"><i class="fas fa-cog"></i> Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -55,7 +83,17 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-logo">
-                <span class="hero-logo-text">🔥 ExusCraft</span>
+                <svg width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="url(#heroGradient)"/>
+                    <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="3" fill="white"/>
+                    <defs>
+                        <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff6b6b"/>
+                            <stop offset="100%" style="stop-color:#4ecdc4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
             </div>
             <h1 class="hero-title">ExusCraft</h1>
             <p class="hero-subtitle">Discover, create, and share extraordinary mods from the community. Transform your favorite games with premium modifications crafted by passionate creators</p>
@@ -198,6 +236,25 @@
                     <option value="Total Conversion">Total Conversion</option>
                     <option value="Utility">Utility</option>
                 </select>
+                <select id="sortFilter" onchange="sortMods()">
+                    <option value="featured">Featured</option>
+                    <option value="newest">Newest</option>
+                    <option value="popular">Most Popular</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+                <select id="gameFilter" onchange="filterByGameAdvanced()">
+                    <option value="">All Games</option>
+                    <option value="Minecraft">Minecraft</option>
+                    <option value="Cyberpunk 2077">Cyberpunk 2077</option>
+                    <option value="Skyrim">Skyrim</option>
+                    <option value="GTA V">GTA V</option>
+                    <option value="Rust">Rust</option>
+                    <option value="The Witcher 3">The Witcher 3</option>
+                    <option value="Fallout 4">Fallout 4</option>
+                    <option value="Counter-Strike 2">Counter-Strike 2</option>
+                </select>
             </div>
             
             <div class="games-showcase" id="allGames">
@@ -233,6 +290,16 @@
         </div>
     </div>
 
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProfileModal()">&times;</span>
+            <div id="profileContent">
+                <!-- Profile content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <!-- Premium Cart -->
     <div id="cart" class="cart">
         <div class="cart-header">
@@ -252,12 +319,6 @@
             </button>
         </div>
     </div>
-
-    <!-- Floating Cart Button -->
-    <button id="cartToggle" class="cart-toggle" onclick="window.toggleCart ? window.toggleCart() : toggleCart()">
-        <i class="fas fa-shopping-cart"></i>
-        <span id="cartCount" class="cart-count">0</span>
-    </button>
 
     <!-- AI Chatbot -->
     <div id="chatbot" class="chatbot">
@@ -309,11 +370,47 @@
         </div>
     </div>
 
-    <!-- Floating Chatbot Button -->
-    <button id="chatbotToggle" class="chatbot-toggle" onclick="window.testChat ? window.testChat() : toggleChatbot()">
+    <!-- Floating Action Buttons - FIXED TO VIEWPORT -->
+    <button id="cartToggle" class="cart-toggle" onclick="window.toggleCart ? window.toggleCart() : toggleCart()" style="position: fixed !important; bottom: 30px !important; right: 30px !important; z-index: 999999 !important;">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount" class="cart-count">0</span>
+    </button>
+
+    <button id="chatbotToggle" class="chatbot-toggle" onclick="toggleChatbot()" style="position: fixed !important; bottom: 30px !important; right: 100px !important; z-index: 999999 !important;">
         <i class="fas fa-comments"></i>
         <span class="chatbot-notification" id="chatNotification">1</span>
     </button>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="url(#footerGradient)"/>
+                    <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="3" fill="white"/>
+                    <defs>
+                        <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff6b6b"/>
+                            <stop offset="100%" style="stop-color:#4ecdc4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="footer-logo-text">ExusCraft</span>
+            </div>
+            <div class="footer-nz">
+                <span class="nz-flag">🇳🇿</span>
+                <span>Proudly made in New Zealand</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <p class="footer-copyright">© 2026 ExusCraft. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://js.stripe.com/v3/"></script>
     <script src="app.js"></script>

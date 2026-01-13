@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Buttons - ExusCraft</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background: #0f0f23;
+            color: white;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #ff5252;
+        }
+        #output {
+            background: #1a1a2e;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ExusCraft Button Test Page</h1>
+    
+    <div class="test-section">
+        <h2>Cart Functions</h2>
+        <button onclick="testAddToCart()">Test Add to Cart</button>
+        <button onclick="testToggleCart()">Toggle Cart</button>
+        <button onclick="testRemoveFromCart()">Remove from Cart</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Wishlist Functions</h2>
+        <button onclick="testAddToWishlist()">Test Add to Wishlist</button>
+        <button onclick="testToggleWishlist()">Toggle Wishlist</button>
+        <button onclick="testRemoveFromWishlist()">Remove from Wishlist</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Chatbot Functions</h2>
+        <button onclick="testToggleChatbot()">Toggle Chatbot</button>
+        <button onclick="testSendMessage()">Send Test Message</button>
+    </div>
+    
+    <div id="output">
+        <h3>Test Output:</h3>
+        <div id="log"></div>
+    </div>
+    
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += '<div>' + new Date().toLocaleTimeString() + ': ' + message + '</div>';
+        }
+        
+        function testAddToCart() {
+            log('Testing addModToCart...');
+            if (typeof window.addModToCart === 'function') {
+                window.addModToCart('mod1');
+                log('✅ addModToCart function called');
+            } else {
+                log('❌ addModToCart function not found');
+            }
+        }
+        
+        function testToggleCart() {
+            log('Testing toggleCart...');
+            if (typeof window.toggleCart === 'function') {
+                window.toggleCart();
+                log('✅ toggleCart function called');
+            } else {
+                log('❌ toggleCart function not found');
+            }
+        }
+        
+        function testRemoveFromCart() {
+            log('Testing removeFromCart...');
+            if (typeof window.removeFromCart === 'function') {
+                window.removeFromCart('mod1');
+                log('✅ removeFromCart function called');
+            } else {
+                log('❌ removeFromCart function not found');
+            }
+        }
+        
+        function testAddToWishlist() {
+            log('Testing addToWishlist...');
+            if (typeof window.addToWishlist === 'function') {
+                window.addToWishlist('mod1');
+                log('✅ addToWishlist function called');
+            } else {
+                log('❌ addToWishlist function not found');
+            }
+        }
+        
+        function testToggleWishlist() {
+            log('Testing toggleWishlist...');
+            if (typeof window.toggleWishlist === 'function') {
+                window.toggleWishlist();
+                log('✅ toggleWishlist function called');
+            } else {
+                log('❌ toggleWishlist function not found');
+            }
+        }
+        
+        function testRemoveFromWishlist() {
+            log('Testing removeFromWishlist...');
+            if (typeof window.removeFromWishlist === 'function') {
+                window.removeFromWishlist('mod1');
+                log('✅ removeFromWishlist function called');
+            } else {
+                log('❌ removeFromWishlist function not found');
+            }
+        }
+        
+        function testToggleChatbot() {
+            log('Testing toggleChatbot...');
+            if (typeof window.toggleChatbot === 'function') {
+                window.toggleChatbot();
+                log('✅ toggleChatbot function called');
+            } else {
+                log('❌ toggleChatbot function not found');
+            }
+        }
+        
+        function testSendMessage() {
+            log('Testing sendMessage...');
+            if (typeof window.sendMessage === 'function') {
+                // Set a test message first
+                const input = document.getElementById('chatInput');
+                if (input) {
+                    input.value = 'Hello ExusBot!';
+                }
+                window.sendMessage();
+                log('✅ sendMessage function called');
+            } else {
+                log('❌ sendMessage function not found');
+            }
+        }
+        
+        // Load the main app script
+        const script = document.createElement('script');
+        script.src = 'app.js';
+        script.onload = function() {
+            log('✅ Main app.js loaded');
+            log('Available functions: ' + Object.keys(window).filter(key => typeof window[key] === 'function' && key.includes('Cart') || key.includes('Wishlist') || key.includes('Chatbot')).join(', '));
+        };
+        script.onerror = function() {
+            log('❌ Failed to load app.js');
+        };
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

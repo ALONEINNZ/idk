@@ -84,7 +84,7 @@ router.post('/mod/:modId', auth, async (req, res) => {
         // Check if user already reviewed this mod
         const existingReview = await ModReview.findOne({
             modId: req.params.modId,
-            userId: req.userId
+            userId: req.userId  
         });
         
         if (existingReview) {

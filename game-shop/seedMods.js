@@ -4,6 +4,32 @@ require('dotenv').config();
 
 const sampleMods = [
   {
+    title: "CS2 Style Competitive Plugin",
+    description: "Transform your Rust server into a CS2-style competitive experience! Features include 5v5 matchmaking, bomb plant/defuse mechanics, buy menus, economy system, ranking system, tournaments, weapon skins, achievements, and much more. Fully configurable with admin commands for map setup, queue zones, and bomb sites. Perfect for competitive Rust communities.",
+    shortDescription: "Complete CS2-style competitive gameplay for Rust servers",
+    price: 24.99,
+    isFree: false,
+    category: "Gameplay",
+    gameTitle: "Rust",
+    gameEngine: "Unity",
+    author: "BugFixed",
+    authorId: new mongoose.Types.ObjectId(),
+    images: ["https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop"],
+    downloadUrl: "/uploads/mod-files/cs2-plugin.zip",
+    fileSize: "2.8 MB",
+    version: "2.1.0",
+    tags: ["Competitive", "CS2", "Matchmaking", "5v5", "Bomb", "Economy", "Ranking", "Tournament"],
+    approved: true,
+    featured: true,
+    active: true,
+    downloads: 45230,
+    rating: {
+      average: 4.9,
+      count: 892,
+      breakdown: { one: 3, two: 8, three: 25, four: 156, five: 700 }
+    }
+  },
+  {
     title: "Ultra Graphics Enhancement",
     description: "Transform your game with stunning 4K textures, enhanced lighting, and realistic weather effects. This comprehensive graphics overhaul brings your favorite games to life with breathtaking visual fidelity.",
     shortDescription: "4K textures and enhanced lighting for ultimate visual experience",
