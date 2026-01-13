@@ -387,6 +387,18 @@ function displayModsInSections(modsToShow) {
     displayModCards(freeMods, 'dealsGames');
     
     displayModCards(modsToShow, 'allGames');
+    
+    // Ensure all cards are visible and clickable
+    setTimeout(() => {
+        document.querySelectorAll('.mod-card, .game-card').forEach(card => {
+            card.style.opacity = '1';
+            card.style.visibility = 'visible';
+            card.style.display = 'block';
+            card.style.transform = 'translateY(0)';
+            card.style.pointerEvents = 'auto';
+            card.style.cursor = 'pointer';
+        });
+    }, 100);
 }
 
 function displayModCards(modsToShow, containerId) {
@@ -407,7 +419,7 @@ function displayModCards(modsToShow, containerId) {
         const status = statusConfig[mod.status];
         
         return `
-            <div class="mod-card" onclick="showModDetails('${mod._id}')">
+            <div class="mod-card" onclick="showModDetails('${mod._id}')" style="cursor: pointer; opacity: 1; visibility: visible; pointer-events: auto;">
                 <div class="mod-card-image">
                     <img src="${mod.images[0]}" alt="${mod.title}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop'">
                     ${mod.featured ? '<span class="mod-badge featured">Featured</span>' : ''}
@@ -439,6 +451,17 @@ function displayModCards(modsToShow, containerId) {
             </div>
         `;
     }).join('');
+    
+    // Force visibility and clickability
+    setTimeout(() => {
+        container.querySelectorAll('.mod-card').forEach(card => {
+            card.style.opacity = '1';
+            card.style.visibility = 'visible';
+            card.style.display = 'block';
+            card.style.pointerEvents = 'auto';
+            card.style.cursor = 'pointer';
+        });
+    }, 50);
 }
 
 function formatDownloads(num) {

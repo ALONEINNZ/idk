@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExusCraft - Premium Community Mod Marketplace</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* PERFORMANCE OPTIMIZED STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden !important;
+            will-change: scroll-position;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .hero, .section, .parallax-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container, .hero-content, .parallax-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .section-header, .section-title, .section-subtitle {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title, .hero-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            width: auto;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        :root {
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --bg-card: #16213e;
+            --bg-card-hover: #1e2749;
+            
+            --accent-primary: #ff6b6b;
+            --accent-secondary: #4ecdc4;
+            --accent-tertiary: #45b7d1;
+            --accent-gold: #feca57;
+            
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            
+            --gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            --gradient-secondary: linear-gradient(135deg, #4ecdc4 0%, #45b7d1 100%);
+            --gradient-hero: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            --gradient-card: linear-gradient(145deg, #16213e 0%, #1e2749 100%);
+            
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.4);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(255, 107, 107, 0.3);
+            
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --transition-smooth: all 0.2s ease;
+            --transition-fast: all 0.15s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+            width: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-fast);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 15, 0.95);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            transition: var(--transition-fast);
+        }
+
+        .logo:hover svg {
+            transform: scale(1.1);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: var(--transition-fast);
+            padding: 0.25rem 0;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition-fast);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: var(--transition-fast);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            border-radius: var(--border-radius-lg);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.1) 0%, var(--bg-primary) 70%);
+            text-align: center;
+            margin-top: 0;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+            animation: heroFadeIn 1.5s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-logo {
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: heroLogoFade 1.5s ease-out 0.3s forwards;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-logo svg {
+            transition: var(--transition-smooth);
+            filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.3));
+        }
+
+        .hero-logo:hover svg {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.5));
+        }
+
+        @keyframes heroLogoFade {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes heroFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            opacity: 0;
+            animation: heroSubtitleFade 1.5s ease-out 0.5s forwards;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        @keyframes heroSubtitleFade {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            animation: heroCTAFade 1.5s ease-out 1s forwards;
+            width: 100%;
+        }
+
+        @keyframes heroCTAFade {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            animation: scrollBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator i {
+            font-size: 1.5rem;
+        }
+        /* Sections */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin: 0 auto 6rem auto;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition-smooth);
+        }
+
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Game Cards */
+        .games-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
+            gap: 2rem;
+            margin-top: 4rem;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        .game-card, .mod-card {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+            opacity: 1 !important;
+            transform: translateY(0px) !important;
+            visibility: visible !important;
+            display: block !important;
+            cursor: pointer;
+            will-change: transform;
+            backface-visibility: hidden;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .game-card:hover, .mod-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: var(--shadow-heavy);
+            border-color: var(--accent-primary);
+        }
+
+        .game-card::before, .mod-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-hero);
+            opacity: 0;
+            transition: var(--transition-fast);
+            z-index: 1;
+        }
+
+        .game-card:hover::before, .mod-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-image, .mod-card-image {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-image img, .mod-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .game-card:hover .game-image img, .mod-card:hover .mod-card-image img {
+            transform: scale(1.05);
+        }
+
+        .game-info, .mod-card-content {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-title, .mod-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .game-description, .mod-card-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .game-meta, .mod-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-price, .mod-card-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .game-category, .mod-card-category {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--accent-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        /* Game Filter Section */
+        .game-filter-section {
+            background: var(--bg-secondary);
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 200px));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            justify-content: center;
+        }
+
+        .game-card-filter {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .game-card-filter:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .game-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Controls */
+        .games-controls {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+            width: auto;
+        }
+
+        .search-bar {
+            position: relative;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .search-bar i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        select {
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            min-width: 150px;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            margin: 3% auto;
+            padding: 3rem;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .close {
+            position: absolute;
+            right: 2rem;
+            top: 2rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .close:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* Cart */
+        .cart-toggle {
+            position: fixed !important;
+            bottom: 2rem !important;
+            right: 2rem !important;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 99999 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-toggle:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 2px solid white;
+        }
+        .cart {
+            position: fixed !important;
+            top: 0 !important;
+            right: -450px;
+            width: 420px;
+            max-width: 100vw;
+            height: 100vh;
+            background: linear-gradient(145deg, #1e3c72 0%, #2a5298 100%);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 99998 !important;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden !important;
+        }
+
+        .cart.open {
+            right: 0 !important;
+        }
+
+        .cart-header {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .close-cart {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-cart:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .cart-footer {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cart-total {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        /* Chatbot */
+        .chatbot-toggle {
+            position: fixed !important;
+            bottom: 2rem !important;
+            right: 90px !important;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 32px rgba(240, 147, 251, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 99999 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-toggle:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(240, 147, 251, 0.6);
+        }
+
+        .chatbot-notification {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ffa502;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .chatbot {
+            position: fixed !important;
+            bottom: 100px !important;
+            right: -400px;
+            width: 380px;
+            max-width: calc(100vw - 40px);
+            height: 500px;
+            background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 99997 !important;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden !important;
+        }
+
+        .chatbot.open {
+            right: 20px !important;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--bg-secondary);
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-nz {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.75rem 1rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .games-showcase {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .games-controls {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .search-bar {
+                min-width: auto;
+                width: 100%;
+            }
+        }
+
+        /* Loading */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(99, 102, 241, 0.3);
+            border-top: 3px solid var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition-smooth);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Premium Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                        <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="16" cy="16" r="3" fill="white"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff6b6b"/>
+                                <stop offset="100%" style="stop-color:#4ecdc4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">ExusCraft</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <a class="nav-link" href="#" onclick="checkLoginAndNavigate('mods')">All Mods</a>
+                <a class="nav-link" href="#" onclick="filterByGame('Minecraft')">Minecraft</a>
+                <a class="nav-link" href="#" onclick="filterByGame('Counter-Strike 2')">CS2</a>
+                <a class="nav-link" href="#" onclick="checkLoginAndNavigate('free-mods')">Free Mods</a>
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+            <div class="nav-auth" id="navAuth">
+                <button onclick="showLogin()" class="btn btn-outline">Login</button>
+                <button onclick="showRegister()" class="btn btn-primary">Join Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cinematic Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <svg width="80" height="80" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="url(#heroGradient)"/>
+                    <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="3" fill="white"/>
+                    <defs>
+                        <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff6b6b"/>
+                            <stop offset="100%" style="stop-color:#4ecdc4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="hero-title">ExusCraft</h1>
+            <p class="hero-subtitle">Discover, create, and share extraordinary mods from the community. Transform your favorite games with premium modifications crafted by passionate creators</p>
+            <div class="hero-cta">
+                <button onclick="checkLoginAndExplore()" class="btn btn-primary btn-large">
+                    Explore Mods
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to discover</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    <!-- Featured Mods Section -->
+    <section class="section" id="featured-games">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Featured Mods</h2>
+                <p class="section-subtitle">Handpicked modifications that transform your gaming experience</p>
+            </div>
+            <div class="games-showcase" id="featuredGames">
+                <!-- Featured mods will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Filter Section -->
+    <section class="game-filter-section" id="game-filter">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title" style="font-size: 2rem; margin-bottom: 1rem;">Browse by Game</h2>
+                <p class="section-subtitle">Find mods for your favorite games</p>
+            </div>
+            <div class="game-grid">
+                <div class="game-card-filter" onclick="filterByGame('Minecraft')">
+                    <span class="game-icon">🧱</span>
+                    <h4>Minecraft</h4>
+                    <p>Block-building adventures</p>
+                </div>
+                <div class="game-card-filter" onclick="filterByGame('Skyrim')">
+                    <span class="game-icon">⚔️</span>
+                    <h4>Skyrim</h4>
+                    <p>Epic fantasy RPG</p>
+                </div>
+                <div class="game-card-filter" onclick="filterByGame('GTA V')">
+                    <span class="game-icon">🚗</span>
+                    <h4>GTA V</h4>
+                    <p>Open-world crime saga</p>
+                </div>
+                <div class="game-card-filter" onclick="filterByGame('Cyberpunk 2077')">
+                    <span class="game-icon">🤖</span>
+                    <h4>Cyberpunk 2077</h4>
+                    <p>Futuristic RPG</p>
+                </div>
+                <div class="game-card-filter" onclick="filterByGame('Rust')">
+                    <span class="game-icon">🔧</span>
+                    <h4>Rust</h4>
+                    <p>Survival multiplayer</p>
+                </div>
+                <div class="game-card-filter" onclick="filterByGame('Counter-Strike 2')">
+                    <span class="game-icon">🎯</span>
+                    <h4>Counter-Strike 2</h4>
+                    <p>Tactical FPS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Releases Section -->
+    <section class="section" id="new-releases">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Latest Mods</h2>
+                <p class="section-subtitle">The newest modifications from our community</p>
+            </div>
+            <div class="games-showcase" id="newReleases">
+                <!-- New releases will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Mods Section -->
+    <section class="section" id="deals">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Free Mods</h2>
+                <p class="section-subtitle">Amazing modifications at no cost</p>
+            </div>
+            <div class="games-showcase" id="dealsGames">
+                <!-- Free mods will be loaded here -->
+            </div>
+        </div>
+    </section>
+    <!-- All Mods Section -->
+    <section class="section" id="games">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">All Mods</h2>
+                <p class="section-subtitle">Browse our complete collection of community modifications</p>
+            </div>
+            
+            <!-- Search and Filter Controls -->
+            <div class="games-controls fade-in">
+                <div class="search-bar">
+                    <input type="text" id="gameSearch" placeholder="Search mods..." onkeyup="searchAllMods()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <select id="categoryFilter" onchange="filterAllMods()">
+                    <option value="">All Categories</option>
+                    <option value="Graphics">Graphics</option>
+                    <option value="Gameplay">Gameplay</option>
+                    <option value="UI/UX">UI/UX</option>
+                    <option value="Performance">Performance</option>
+                    <option value="Utility">Utility</option>
+                </select>
+                <select id="gameFilter" onchange="filterByGameAdvanced()">
+                    <option value="">All Games</option>
+                    <option value="Minecraft">Minecraft</option>
+                    <option value="Cyberpunk 2077">Cyberpunk 2077</option>
+                    <option value="Skyrim">Skyrim</option>
+                    <option value="Counter-Strike 2">Counter-Strike 2</option>
+                </select>
+            </div>
+            
+            <div class="games-showcase" id="allGames">
+                <!-- All mods will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Detail Modal -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="gameDetails">
+                <!-- Game details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            <div id="authContent">
+                <!-- Auth forms will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Cart -->
+    <div id="cart" class="cart">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Collection</h3>
+            <button onclick="toggleCart()" class="close-cart">&times;</button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                Total: $<span id="cartTotal">0.00</span>
+            </div>
+            <button onclick="checkout()" class="btn btn-primary btn-full">
+                <i class="fas fa-credit-card"></i>
+                Complete Purchase
+            </button>
+        </div>
+    </div>
+    <!-- AI Chatbot -->
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-info">
+                <h4>ExusBot AI</h4>
+                <span class="chatbot-status">Online</span>
+            </div>
+            <button onclick="toggleChatbot()" class="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatMessages" class="chatbot-messages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Hi! I'm ExusBot, your gaming assistant! 🤖</p>
+                    <p>I can help you with mod installation, downloads, and general questions. What would you like to know?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Ask me anything about mods..." onkeypress="handleChatKeyPress(event)">
+            <button onclick="sendMessage()" class="chat-send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <button id="cartToggle" class="cart-toggle" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount" class="cart-count">0</span>
+    </button>
+
+    <button id="chatbotToggle" class="chatbot-toggle" onclick="toggleChatbot()">
+        <i class="fas fa-comments"></i>
+        <span class="chatbot-notification" id="chatNotification">1</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="url(#footerGradient)"/>
+                    <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="3" fill="white"/>
+                    <defs>
+                        <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff6b6b"/>
+                            <stop offset="100%" style="stop-color:#4ecdc4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="footer-logo-text">ExusCraft</span>
+            </div>
+            <div class="footer-nz">
+                <span class="nz-flag">🇳🇿</span>
+                <span>Proudly made in New Zealand</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <p class="footer-copyright">© 2026 ExusCraft. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Global variables
+        let currentUser = null;
+        let mods = [];
+        let cart = [];
+        let currentTheme = 'dark';
+
+        // Real mod data
+        const realMods = [
+            {
+                _id: 'sodium',
+                title: 'Sodium',
+                description: 'Sodium is a free and open-source rendering optimization mod for Minecraft which greatly improves frame rates and stuttering while fixing many graphical issues.',
+                shortDescription: 'Powerful rendering optimization mod for Minecraft',
+                price: 0,
+                isFree: true,
+                category: 'Performance',
+                gameTitle: 'Minecraft',
+                author: 'CaffeineMC',
+                images: ['https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=400&h=250&fit=crop&auto=format'],
+                version: '0.5.8',
+                rating: 4.9,
+                downloads: 45000000,
+                featured: true,
+                status: 'finalised'
+            },
+            {
+                _id: 'iris',
+                title: 'Iris Shaders',
+                description: 'Iris is a modern shader mod for Minecraft intended to be compatible with existing OptiFine shader packs.',
+                shortDescription: 'Modern shader mod compatible with Sodium',
+                price: 0,
+                isFree: true,
+                category: 'Graphics',
+                gameTitle: 'Minecraft',
+                author: 'IrisShaders',
+                images: ['https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&h=250&fit=crop&auto=format'],
+                version: '1.6.17',
+                rating: 4.8,
+                downloads: 32000000,
+                featured: true,
+                status: 'finalised'
+            },
+            {
+                _id: 'cs2plugin',
+                title: 'CS2 Style Competitive Plugin',
+                description: 'Transform your Counter-Strike 2 server into a competitive esports experience! Features 5v5 matchmaking, bomb plant/defuse mechanics, buy menus, economy system, ranking, tournaments, weapon skins, achievements and more.',
+                shortDescription: 'Complete CS2-style competitive gameplay system',
+                price: 24.99,
+                isFree: false,
+                category: 'Gameplay',
+                gameTitle: 'Counter-Strike 2',
+                author: 'ExusCraft',
+                images: ['https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=250&fit=crop&auto=format'],
+                version: '2.1.0',
+                rating: 4.9,
+                downloads: 45230,
+                featured: true,
+                status: 'in-progress'
+            },
+            {
+                _id: 'skyui',
+                title: 'SkyUI',
+                description: 'SkyUI is an elegant, PC-friendly interface mod with many advanced features. Includes improved inventory management, magic menu overhaul, and essential modding framework.',
+                shortDescription: 'Essential PC-friendly interface overhaul',
+                price: 0,
+                isFree: true,
+                category: 'UI/UX',
+                gameTitle: 'Skyrim',
+                author: 'SkyUI Team',
+                images: ['https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&h=250&fit=crop&auto=format'],
+                version: '5.2',
+                rating: 4.9,
+                downloads: 85000000,
+                featured: true,
+                status: 'finalised'
+            }
+        ];
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('ExusCraft loading...');
+            
+            initializeTheme();
+            
+            const loadingElement = document.getElementById('loading');
+            if (loadingElement) {
+                setTimeout(() => {
+                    loadingElement.style.display = 'none';
+                }, 500);
+            }
+            
+            loadSavedData();
+            
+            // Load mods
+            mods = realMods;
+            displayModsInSections(mods);
+            
+            initScrollAnimations();
+            initNavbarScroll();
+            updateCartDisplay();
+            
+            console.log('ExusCraft loaded successfully!');
+        });
+        // Theme System
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            currentTheme = savedTheme;
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            document.body.setAttribute('data-theme', currentTheme);
+            updateThemeIcon();
+        }
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            document.body.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            updateThemeIcon();
+            showMessage(`Switched to ${currentTheme} mode`, 'success');
+        }
+
+        function updateThemeIcon() {
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) {
+                themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+
+        // Data Management
+        function loadSavedData() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                try {
+                    cart = JSON.parse(savedCart);
+                    updateCartDisplay();
+                } catch (e) {
+                    cart = [];
+                }
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Authentication
+        function showLogin() {
+            document.getElementById('authContent').innerHTML = `
+                <div class="auth-form">
+                    <div class="auth-header">
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to your ExusCraft account</p>
+                    </div>
+                    <p style="text-align: center; color: var(--text-secondary); margin: 2rem 0;">
+                        This is a demo - authentication is simulated
+                    </p>
+                    <button onclick="simulateLogin()" class="btn btn-primary btn-full">
+                        Demo Login
+                    </button>
+                </div>
+            `;
+            document.getElementById('authModal').style.display = 'block';
+        }
+
+        function showRegister() { showLogin(); }
+
+        function simulateLogin() {
+            currentUser = { name: 'Demo User', email: 'demo@exuscraft.com' };
+            localStorage.setItem('user', JSON.stringify(currentUser));
+            closeAuthModal();
+            showMessage('Welcome to ExusCraft! 🎉', 'success');
+        }
+
+        function logout() {
+            localStorage.removeItem('user');
+            currentUser = null;
+            showMessage('Logged out successfully!', 'success');
+        }
+        // Display Mods in Sections
+        function displayModsInSections(modsToShow) {
+            const featuredMods = modsToShow.filter(mod => mod.featured).slice(0, 4);
+            displayModCards(featuredMods, 'featuredGames');
+            
+            const newMods = [...modsToShow].sort((a, b) => b.downloads - a.downloads).slice(0, 6);
+            displayModCards(newMods, 'newReleases');
+            
+            const freeMods = modsToShow.filter(mod => mod.isFree).slice(0, 6);
+            displayModCards(freeMods, 'dealsGames');
+            
+            displayModCards(modsToShow, 'allGames');
+        }
+
+        function displayModCards(modsToShow, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            container.innerHTML = modsToShow.map((mod) => {
+                const stars = '★'.repeat(Math.floor(mod.rating || 4)) + '☆'.repeat(5 - Math.floor(mod.rating || 4));
+                const priceDisplay = mod.isFree ? 'FREE' : '$' + mod.price.toFixed(2);
+                
+                return `
+                    <div class="mod-card" onclick="showModDetails('${mod._id}')" style="cursor: pointer;">
+                        <div class="mod-card-image">
+                            <img src="${mod.images[0]}" alt="${mod.title}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop'">
+                            ${mod.featured ? '<span class="mod-badge featured" style="position: absolute; top: 1rem; left: 1rem; background: var(--accent-secondary); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">Featured</span>' : ''}
+                            ${mod.isFree ? '<span class="mod-badge free" style="position: absolute; top: 1rem; right: 1rem; background: var(--accent-gold); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">FREE</span>' : ''}
+                        </div>
+                        <div class="mod-card-content">
+                            <h3 class="mod-card-title">${mod.title}</h3>
+                            <p class="mod-card-desc">${mod.shortDescription}</p>
+                            <div class="mod-card-meta">
+                                <span class="mod-card-game"><i class="fas fa-gamepad"></i> ${mod.gameTitle}</span>
+                                <span class="mod-card-category">${mod.category}</span>
+                            </div>
+                            <div class="mod-card-stats" style="display: flex; justify-content: space-between; align-items: center; margin: 1rem 0;">
+                                <span class="mod-card-rating"><span class="stars">${stars}</span> ${mod.rating.toFixed(1)}</span>
+                                <span class="mod-card-downloads"><i class="fas fa-download"></i> ${formatDownloads(mod.downloads)}</span>
+                            </div>
+                            <div class="mod-card-footer" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <span class="mod-card-price">${priceDisplay}</span>
+                                <span class="mod-card-author">by ${mod.author}</span>
+                            </div>
+                            <div class="mod-card-actions">
+                                <button onclick="event.stopPropagation(); ${mod.isFree ? `downloadMod('${mod._id}')` : `addModToCart('${mod._id}')`}" class="btn btn-primary" style="width: 100%;">
+                                    <i class="fas fa-${mod.isFree ? 'download' : 'cart-plus'}"></i>
+                                    ${mod.isFree ? 'Download' : 'Add to Cart'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function formatDownloads(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+        // Show Mod Details Modal
+        function showModDetails(modId) {
+            const mod = mods.find(m => m._id === modId);
+            if (!mod) return;
+            
+            const modal = document.getElementById('gameModal');
+            const gameDetails = document.getElementById('gameDetails');
+            if (!modal || !gameDetails) return;
+            
+            const stars = '★'.repeat(Math.floor(mod.rating || 4)) + '☆'.repeat(5 - Math.floor(mod.rating || 4));
+            const priceDisplay = mod.isFree ? 'FREE' : '$' + mod.price.toFixed(2);
+            
+            gameDetails.innerHTML = `
+                <div class="mod-detail">
+                    <div class="mod-detail-header" style="display: flex; gap: 2rem; margin-bottom: 2rem;">
+                        <img src="${mod.images[0]}" alt="${mod.title}" style="width: 200px; height: 150px; object-fit: cover; border-radius: 12px;" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=250&fit=crop'">
+                        <div class="mod-detail-info" style="flex: 1;">
+                            <h2>${mod.title}</h2>
+                            <div class="mod-detail-meta" style="margin: 1rem 0; display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <span><i class="fas fa-gamepad"></i> ${mod.gameTitle}</span>
+                                <span><i class="fas fa-tag"></i> ${mod.category}</span>
+                                <span><i class="fas fa-code-branch"></i> v${mod.version}</span>
+                            </div>
+                            <div class="mod-detail-author" style="margin: 0.5rem 0;">by <strong>${mod.author}</strong></div>
+                            <div class="mod-detail-rating" style="display: flex; gap: 1rem; align-items: center;">
+                                <span class="stars">${stars}</span>
+                                <span>${mod.rating.toFixed(1)} / 5.0</span>
+                                <span class="downloads"><i class="fas fa-download"></i> ${formatDownloads(mod.downloads)} downloads</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mod-detail-section" style="margin: 2rem 0;">
+                        <h3>Description</h3>
+                        <p>${mod.description}</p>
+                    </div>
+                    
+                    <div class="mod-detail-price-section" style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0; padding: 1rem; background: var(--bg-secondary); border-radius: 12px;">
+                        <span class="price-label">${mod.isFree ? 'Free Download' : 'Price'}</span>
+                        <span class="price-value" style="font-size: 1.5rem; font-weight: 800; color: var(--accent-primary);">${priceDisplay}</span>
+                    </div>
+                    
+                    <div class="mod-detail-actions" style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        ${mod.isFree ? `
+                            <button onclick="downloadModWithAnimation('${mod._id}')" class="btn btn-primary btn-large" id="downloadBtn-${mod._id}">
+                                <i class="fas fa-download"></i> Download Now
+                            </button>
+                        ` : `
+                            <button onclick="purchaseMod('${mod._id}')" class="btn btn-primary btn-large">
+                                <i class="fas fa-credit-card"></i> Purchase - ${priceDisplay}
+                            </button>
+                            <button onclick="addModToCart('${mod._id}')" class="btn btn-outline btn-large">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        `}
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            modal.style.opacity = '0';
+            
+            setTimeout(() => {
+                modal.style.transition = 'all 0.3s ease';
+                modal.style.opacity = '1';
+            }, 10);
+        }
+        // Download Mod with Animation
+        function downloadModWithAnimation(modId) {
+            const mod = mods.find(m => m._id === modId);
+            if (!mod) {
+                showMessage('Mod not found!', 'error');
+                return;
+            }
+            
+            const downloadBtn = document.getElementById(`downloadBtn-${modId}`);
+            if (downloadBtn) {
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...';
+                downloadBtn.disabled = true;
+                downloadBtn.style.background = '#6b7280';
+            }
+            
+            showMessage(`Preparing download for ${mod.title}...`, 'info');
+            
+            setTimeout(() => {
+                if (downloadBtn) {
+                    downloadBtn.innerHTML = '<i class="fas fa-download"></i> Downloading...';
+                    downloadBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                }
+                
+                // Create downloadable file
+                const content = `===========================================
+${mod.title} - v${mod.version}
+===========================================
+
+Author: ${mod.author}
+Category: ${mod.category}
+Game: ${mod.gameTitle}
+Rating: ${mod.rating}/5.0
+Downloads: ${formatDownloads(mod.downloads)}
+
+Description:
+${mod.description}
+
+Installation Instructions:
+1. Extract the downloaded files
+2. Copy to your game's mod directory
+3. Enable the mod in your game settings
+4. Restart the game and enjoy!
+
+===========================================
+Thank you for downloading from ExusCraft!
+Proudly made in New Zealand 🇳🇿
+===========================================`;
+                
+                const blob = new Blob([content], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${mod.title.replace(/[^a-z0-9]/gi, '_')}_v${mod.version}_ExusCraft.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                if (downloadBtn) {
+                    downloadBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+                    downloadBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                }
+                
+                showMessage(`${mod.title} downloaded successfully!`, 'success');
+                
+                setTimeout(() => {
+                    closeModal();
+                }, 1500);
+                
+            }, 1000);
+        }
+
+        function downloadMod(modId) {
+            downloadModWithAnimation(modId);
+        }
+
+        function purchaseMod(modId) {
+            const mod = mods.find(m => m._id === modId);
+            if (!mod) {
+                showMessage('Mod not found!', 'error');
+                return;
+            }
+            
+            const confirmPurchase = confirm(`Purchase ${mod.title} for $${mod.price.toFixed(2)}?\n\nThis is a demo - no real payment will be processed.`);
+            
+            if (confirmPurchase) {
+                showMessage(`Processing purchase for ${mod.title}...`, 'info');
+                
+                setTimeout(() => {
+                    showMessage(`🎉 Purchase successful! ${mod.title} is now yours!`, 'success');
+                    closeModal();
+                    setTimeout(() => downloadMod(modId), 1000);
+                }, 1500);
+            }
+        }
+        // Cart Functions
+        function addModToCart(modId) {
+            const mod = mods.find(m => m._id === modId);
+            if (!mod) {
+                showMessage('Mod not found!', 'error');
+                return;
+            }
+            
+            if (cart.find(item => item._id === modId)) {
+                showMessage(`${mod.title} is already in cart!`, 'info');
+                return;
+            }
+            
+            cart.push(mod);
+            updateCartDisplay();
+            saveData();
+            showMessage(`${mod.title} added to cart!`, 'success');
+        }
+
+        function removeFromCart(modId) {
+            cart = cart.filter(item => item._id !== modId);
+            updateCartDisplay();
+            saveData();
+            showMessage('Item removed from cart', 'info');
+        }
+
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cartCount) {
+                cartCount.textContent = cart.length;
+                cartCount.style.display = cart.length > 0 ? 'flex' : 'none';
+            }
+            
+            if (cartItems) {
+                if (cart.length === 0) {
+                    cartItems.innerHTML = `
+                        <div style="text-align: center; padding: 2rem; color: rgba(255,255,255,0.7);">
+                            <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <p>Your cart is empty</p>
+                            <span>Add some amazing mods to get started!</span>
+                        </div>
+                    `;
+                } else {
+                    cartItems.innerHTML = cart.map(item => `
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center;">
+                            <img src="${item.images[0]}" alt="${item.title}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <h4 style="color: white; margin: 0 0 0.5rem 0; font-size: 1rem;">${item.title}</h4>
+                                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">$${item.price.toFixed(2)}</p>
+                            </div>
+                            <button onclick="removeFromCart('${item._id}')" style="background: rgba(255, 71, 87, 0.2); border: 1px solid #ff4757; color: #ff4757; padding: 0.5rem; border-radius: 8px; cursor: pointer;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `).join('');
+                }
+            }
+            
+            if (cartTotal) {
+                const total = cart.reduce((sum, item) => sum + item.price, 0);
+                cartTotal.textContent = total.toFixed(2);
+            }
+        }
+
+        function toggleCart() {
+            const cartElement = document.getElementById('cart');
+            if (cartElement) {
+                cartElement.classList.toggle('open');
+                if (cartElement.classList.contains('open')) {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showMessage('Your cart is empty!', 'info');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const confirmCheckout = confirm(`Complete purchase for $${total.toFixed(2)}?\n\nThis is a demo - no real payment will be processed.`);
+            
+            if (confirmCheckout) {
+                showMessage('Processing your order...', 'info');
+                setTimeout(() => {
+                    cart.forEach(item => downloadMod(item._id));
+                    cart = [];
+                    updateCartDisplay();
+                    saveData();
+                    toggleCart();
+                    showMessage('🎉 Purchase complete! Your mods are downloading.', 'success');
+                }, 1500);
+            }
+        }
+        // Search and Filter Functions
+        function searchAllMods() {
+            const searchInput = document.getElementById('gameSearch');
+            if (!searchInput) return;
+            
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                displayModCards(mods, 'allGames');
+                return;
+            }
+            
+            const filtered = mods.filter(mod => 
+                mod.title.toLowerCase().includes(searchTerm) ||
+                mod.description.toLowerCase().includes(searchTerm) ||
+                mod.gameTitle.toLowerCase().includes(searchTerm) ||
+                mod.category.toLowerCase().includes(searchTerm) ||
+                mod.author.toLowerCase().includes(searchTerm)
+            );
+            
+            displayModCards(filtered, 'allGames');
+            
+            if (filtered.length === 0) {
+                document.getElementById('allGames').innerHTML = `
+                    <div style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>No mods found for "${searchTerm}"</p>
+                        <span>Try a different search term</span>
+                    </div>
+                `;
+            }
+        }
+
+        function filterAllMods() {
+            const categoryFilter = document.getElementById('categoryFilter');
+            if (!categoryFilter || !categoryFilter.value) {
+                displayModCards(mods, 'allGames');
+                return;
+            }
+            
+            const filtered = mods.filter(mod => mod.category === categoryFilter.value);
+            displayModCards(filtered, 'allGames');
+        }
+
+        function filterByGame(game) {
+            const filtered = mods.filter(mod => mod.gameTitle === game);
+            displayModCards(filtered, 'allGames');
+            
+            const modsSection = document.getElementById('games');
+            if (modsSection) {
+                modsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            showMessage(`Showing mods for ${game}`, 'info');
+        }
+
+        function filterByGameAdvanced() {
+            const gameFilter = document.getElementById('gameFilter');
+            if (gameFilter && gameFilter.value) {
+                filterByGame(gameFilter.value);
+            } else {
+                displayModCards(mods, 'allGames');
+            }
+        }
+
+        // Utility Functions
+        function showMessage(message, type) {
+            document.querySelectorAll('.toast-message').forEach(el => el.remove());
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'toast-message';
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                color: white;
+                font-weight: 600;
+                z-index: 100000;
+                max-width: 350px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+                animation: slideIn 0.3s ease;
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+            `;
+            
+            messageDiv.textContent = message;
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => messageDiv.remove(), 300);
+            }, 3000);
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('gameModal');
+            if (modal) modal.style.display = 'none';
+        }
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            ['authModal', 'gameModal'].forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (modal && e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in, .section-header').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        function initNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            if (!navbar) return;
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Chatbot
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            const notification = document.getElementById('chatNotification');
+            
+            if (chatbot) {
+                chatbot.classList.toggle('open');
+                if (chatbot.classList.contains('open') && notification) {
+                    notification.style.display = 'none';
+                }
+            }
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            if (!input || !input.value.trim()) return;
+            
+            const message = input.value.trim();
+            input.value = '';
+            
+            addMessageToChat(message, 'user');
+            
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessageToChat(response, 'bot');
+            }, 800);
+        }
+
+        function addMessageToChat(message, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            if (!messagesContainer) return;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.style.cssText = `
+                display: flex;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+                ${sender === 'user' ? 'flex-direction: row-reverse;' : ''}
+            `;
+            
+            messageDiv.innerHTML = `
+                <div style="width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; background: ${sender === 'bot' ? 'var(--gradient-primary)' : 'var(--accent-gold)'}; color: white;">
+                    <i class="fas fa-${sender === 'bot' ? 'robot' : 'user'}"></i>
+                </div>
+                <div style="background: ${sender === 'bot' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 165, 2, 0.2)'}; padding: 0.75rem 1rem; border-radius: 16px; max-width: 80%; word-wrap: break-word; border: 1px solid ${sender === 'bot' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 165, 2, 0.3)'};">
+                    <p style="margin: 0; line-height: 1.4; color: white;">${message}</p>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const lower = message.toLowerCase();
+            
+            if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
+                return "Hello! I'm ExusBot 🤖 How can I help you today?";
+            }
+            if (lower.includes('mod') && lower.includes('install')) {
+                return "To install mods: 1) Download the mod file 2) Extract to your game's mod folder 3) Enable in game settings 4) Restart the game. Need help with a specific game?";
+            }
+            if (lower.includes('download')) {
+                return "Click on any mod card to see details, then click 'Download Now' for free mods or 'Purchase' for paid ones. Downloads go straight to your PC!";
+            }
+            if (lower.includes('price') || lower.includes('cost') || lower.includes('free')) {
+                return "We have both free and paid mods! Free mods are marked with a 'FREE' badge. Paid mods support the creators who make them.";
+            }
+            
+            return "I can help with mod installation, downloads, and general questions. What would you like to know?";
+        }
+
+        // Navigation helpers
+        function checkLoginAndNavigate(section) {
+            const modsSection = document.getElementById('games');
+            if (modsSection) {
+                modsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function checkLoginAndExplore() {
+            const modsSection = document.getElementById('games');
+            if (modsSection) {
+                modsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        console.log('ExusCraft single-file app loaded successfully!');
+    </script>
+</body>
+</html>

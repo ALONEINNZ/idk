@@ -4371,3 +4371,218 @@ input[type="search"]::-webkit-search-results-decoration {
     color: var(--text-muted);
     pointer-events: none;
 }
+
+/* ============================================
+   COLLECTIONS PAGE STYLES
+   ============================================ */
+.collections-hero {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, var(--bg-primary) 70%);
+    padding: 8rem 0 4rem 0;
+    margin-top: 80px;
+}
+
+.collections-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.collection-card {
+    background: var(--bg-card);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.collection-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-primary);
+}
+
+.collection-card.featured {
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 8px 30px rgba(255, 107, 107, 0.2);
+}
+
+.collections-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.collections-controls select {
+    background: var(--bg-secondary);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    min-width: 150px;
+}
+
+.collections-controls select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Collection Modal Styles */
+.collection-modal {
+    max-width: 1000px;
+}
+
+.collection-detail-header {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.collection-mods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.collection-mod-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.collection-mod-item:hover {
+    background: var(--bg-card-hover);
+    transform: translateX(5px);
+}
+
+/* Create Collection Form */
+.create-collection-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+/* Status badges */
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Collections */
+@media (max-width: 768px) {
+    .collection-detail-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .collections-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .collections-controls select {
+        min-width: auto;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+/* Light theme for collections */
+[data-theme="light"] .collection-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .collection-mod-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .collections-controls select,
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-group textarea,
+[data-theme="light"] .form-group select {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
