@@ -33,7 +33,7 @@ router.post('/create-payment-intent', auth, async (req, res) => {
   }
 });
 
-// Confirm purchase
+
 router.post('/confirm-purchase', auth, async (req, res) => {
   try {
     const { paymentIntentId, gameIds } = req.body;

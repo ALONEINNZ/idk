@@ -245,6 +245,168 @@ const sampleGames = [
     tags: ["City Builder", "Management", "Strategy", "Sandbox"],
     rating: 4.5,
     featured: true
+  },
+  {
+    title: "Quantum Warfare",
+    description: "Experience the future of combat in this sci-fi shooter. Master quantum abilities, manipulate time and space, and fight across multiple dimensions.",
+    price: 49.99,
+    category: "Action",
+    images: ["https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop"],
+    downloadUrl: "https://example.com/download/quantum-warfare",
+    systemRequirements: {
+      minimum: {
+        os: "Windows 10 64-bit",
+        processor: "Intel Core i5-9400 / AMD Ryzen 5 3600",
+        memory: "8 GB RAM",
+        graphics: "NVIDIA GTX 1660 / AMD RX 5600 XT",
+        storage: "35 GB available space"
+      },
+      recommended: {
+        os: "Windows 11 64-bit",
+        processor: "Intel Core i7-11700K / AMD Ryzen 7 5800X",
+        memory: "16 GB RAM",
+        graphics: "NVIDIA RTX 4060 / AMD RX 7600",
+        storage: "35 GB SSD space"
+      }
+    },
+    tags: ["Sci-Fi", "Shooter", "Quantum", "Multiplayer"],
+    rating: 4.6,
+    featured: true
+  },
+  {
+    title: "Medieval Legends",
+    description: "Forge your destiny in a vast medieval world. Build kingdoms, lead armies, and write your own legend in this epic strategy RPG.",
+    price: 39.99,
+    category: "Strategy",
+    images: ["https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop"],
+    downloadUrl: "https://example.com/download/medieval-legends",
+    systemRequirements: {
+      minimum: {
+        os: "Windows 10 64-bit",
+        processor: "Intel Core i3-8100 / AMD Ryzen 3 2200G",
+        memory: "6 GB RAM",
+        graphics: "NVIDIA GTX 1050 / AMD RX 560",
+        storage: "25 GB available space"
+      },
+      recommended: {
+        os: "Windows 11 64-bit",
+        processor: "Intel Core i5-10400 / AMD Ryzen 5 3600",
+        memory: "12 GB RAM",
+        graphics: "NVIDIA RTX 3060 / AMD RX 6600",
+        storage: "25 GB SSD space"
+      }
+    },
+    tags: ["Medieval", "Strategy", "Kingdom", "RPG"],
+    rating: 4.4,
+    featured: false
+  },
+  {
+    title: "Ocean Explorer",
+    description: "Dive into the mysterious depths of the ocean. Discover ancient civilizations, encounter sea creatures, and uncover underwater treasures.",
+    price: 32.99,
+    category: "Adventure",
+    images: ["https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop"],
+    downloadUrl: "https://example.com/download/ocean-explorer",
+    systemRequirements: {
+      minimum: {
+        os: "Windows 10 64-bit",
+        processor: "Intel Core i3-7100 / AMD Ryzen 3 1200",
+        memory: "6 GB RAM",
+        graphics: "NVIDIA GTX 1050 / AMD RX 560",
+        storage: "20 GB available space"
+      },
+      recommended: {
+        os: "Windows 11 64-bit",
+        processor: "Intel Core i5-9400 / AMD Ryzen 5 2600",
+        memory: "12 GB RAM",
+        graphics: "NVIDIA GTX 1660 / AMD RX 5500 XT",
+        storage: "20 GB SSD space"
+      }
+    },
+    tags: ["Ocean", "Exploration", "Underwater", "Discovery"],
+    rating: 4.3,
+    featured: false
+  },
+  {
+    title: "Retro Arcade Collection",
+    description: "Relive the golden age of gaming with this collection of classic arcade games. Over 50 retro games with modern enhancements and online leaderboards.",
+    price: 19.99,
+    category: "Indie",
+    images: ["https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=600&fit=crop"],
+    downloadUrl: "https://example.com/download/retro-arcade",
+    systemRequirements: {
+      minimum: {
+        os: "Windows 10 64-bit",
+        processor: "Intel Core i3-6100 / AMD Ryzen 3 1200",
+        memory: "4 GB RAM",
+        graphics: "NVIDIA GTX 750 Ti / AMD RX 460",
+        storage: "5 GB available space"
+      },
+      recommended: {
+        os: "Windows 11 64-bit",
+        processor: "Intel Core i5-8400 / AMD Ryzen 5 2600",
+        memory: "8 GB RAM",
+        graphics: "NVIDIA GTX 1050 / AMD RX 560",
+        storage: "5 GB SSD space"
+      }
+    },
+    tags: ["Retro", "Arcade", "Classic", "Collection"],
+    rating: 4.7,
+    featured: false
+  },
+  {
+    title: "Mech Warrior Elite",
+    description: "Pilot giant mechs in intense battles across alien worlds. Customize your war machine and engage in epic multiplayer combat.",
+    price: 44.99,
+    category: "Action",
+    images: ["https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop"],
+    downloadUrl: "https://example.com/download/mech-warrior",
+    systemRequirements: {
+      minimum: {
+        os: "Windows 10 64-bit",
+        processor: "Intel Core i5-8400 / AMD Ryzen 5 2600",
+        memory: "8 GB RAM",
+        graphics: "NVIDIA GTX 1060 / AMD RX 580",
+        storage: "40 GB available space"
+      },
+      recommended: {
+        os: "Windows 11 64-bit",
+        processor: "Intel Core i7-10700K / AMD Ryzen 7 3700X",
+        memory: "16 GB RAM",
+        graphics: "NVIDIA RTX 3070 / AMD RX 6700 XT",
+        storage: "40 GB SSD space"
+      }
+    },
+    tags: ["Mech", "Combat", "Multiplayer", "Customization"],
+    rating: 4.5,
+    featured: false
+  },
+  {
+    title: "Farming Paradise",
+    description: "Build and manage your dream farm in this relaxing simulation. Grow crops, raise animals, and create a thriving agricultural business.",
+    price: 27.99,
+    category: "Simulation",
+    images: ["https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop"],
+    downloadUrl: "https://example.com/download/farming-paradise",
+    systemRequirements: {
+      minimum: {
+        os: "Windows 10 64-bit",
+        processor: "Intel Core i3-7100 / AMD Ryzen 3 1200",
+        memory: "4 GB RAM",
+        graphics: "NVIDIA GTX 950 / AMD RX 460",
+        storage: "15 GB available space"
+      },
+      recommended: {
+        os: "Windows 11 64-bit",
+        processor: "Intel Core i5-9400 / AMD Ryzen 5 2600",
+        memory: "8 GB RAM",
+        graphics: "NVIDIA GTX 1660 / AMD RX 5500 XT",
+        storage: "15 GB SSD space"
+      }
+    },
+    tags: ["Farming", "Relaxing", "Management", "Peaceful"],
+    rating: 4.6,
+    featured: false
   }
 ];
 

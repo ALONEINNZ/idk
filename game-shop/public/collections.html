@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mod Collections - ModForge</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="nav-logo">🔥 ModForge</a>
+            </div>
+            <div class="nav-menu">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="#" onclick="checkLoginAndNavigate('mods')">All Mods</a>
+                <a class="nav-link active" href="collections.html">Collections</a>
+                <a class="nav-link" href="profile.html">Profile</a>
+            </div>
+            <div class="nav-auth" id="navAuth">
+                <button onclick="showLogin()" class="btn btn-outline">Login</button>
+                <button onclick="showRegister()" class="btn btn-primary">Join Now</button>
+            </div>
+            <div class="nav-user" id="navUser" style="display: none;">
+                <span id="username"></span>
+                <button onclick="logout()" class="btn btn-outline">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero collections-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Mod Collections</h1>
+            <p class="hero-subtitle">Discover curated mod packs and create your own collections</p>
+            <div class="hero-cta">
+                <button onclick="showCreateCollection()" class="btn btn-primary btn-large">
+                    <i class="fas fa-plus"></i> Create Collection
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Collections</h2>
+                <p class="section-subtitle">Hand-picked collections by our community</p>
+            </div>
+            <div class="collections-showcase" id="featuredCollections">
+                <!-- Featured collections will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- All Collections -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Browse Collections</h2>
+            </div>
+            
+            <!-- Filters -->
+            <div class="collections-controls">
+                <div class="search-bar">
+                    <input type="text" id="collectionSearch" placeholder="Search collections..." onkeyup="searchCollections()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <select id="gameFilter" onchange="filterCollections()">
+                    <option value="">All Games</option>
+                    <option value="Minecraft">Minecraft</option>
+                    <option value="Skyrim">Skyrim</option>
+                    <option value="GTA V">GTA V</option>
+                    <option value="Cyberpunk 2077">Cyberpunk 2077</option>
+                    <option value="Rust">Rust</option>
+                    <option value="The Witcher 3">The Witcher 3</option>
+                    <option value="Fallout 4">Fallout 4</option>
+                    <option value="Counter-Strike 2">Counter-Strike 2</option>
+                </select>
+                <select id="categoryFilter" onchange="filterCollections()">
+                    <option value="">All Categories</option>
+                    <option value="Graphics Enhancement">Graphics Enhancement</option>
+                    <option value="Gameplay Overhaul">Gameplay Overhaul</option>
+                    <option value="Quality of Life">Quality of Life</option>
+                    <option value="Immersion Pack">Immersion Pack</option>
+                    <option value="Performance">Performance</option>
+                    <option value="Content Addition">Content Addition</option>
+                    <option value="Bug Fixes">Bug Fixes</option>
+                </select>
+                <select id="sortFilter" onchange="filterCollections()">
+                    <option value="newest">Newest</option>
+                    <option value="popular">Most Popular</option>
+                    <option value="downloads">Most Downloaded</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+            
+            <div class="collections-grid" id="collectionsGrid">
+                <!-- Collections will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMoreCollections" onclick="loadMoreCollections()" class="btn btn-outline btn-large" style="display: none;">
+                    Load More Collections
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Detail Modal -->
+    <div id="collectionModal" class="modal">
+        <div class="modal-content collection-modal">
+            <span class="close" onclick="closeCollectionModal()">&times;</span>
+            <div id="collectionDetails">
+                <!-- Collection details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Collection Modal -->
+    <div id="createCollectionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCreateCollectionModal()">&times;</span>
+            <div class="create-collection-form">
+                <h2>Create New Collection</h2>
+                <form id="createCollectionForm" onsubmit="createCollection(event)">
+                    <div class="form-group">
+                        <label for="collectionName">Collection Name</label>
+                        <input type="text" id="collectionName" required maxlength="100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collectionDescription">Description</label>
+                        <textarea id="collectionDescription" rows="4" maxlength="500"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="collectionGame">Game</label>
+                            <select id="collectionGame" required>
+                                <option value="">Select Game</option>
+                                <option value="Minecraft">Minecraft</option>
+                                <option value="Skyrim">Skyrim</option>
+                                <option value="GTA V">GTA V</option>
+                                <option value="Cyberpunk 2077">Cyberpunk 2077</option>
+                                <option value="Rust">Rust</option>
+                                <option value="The Witcher 3">The Witcher 3</option>
+                                <option value="Fallout 4">Fallout 4</option>
+                                <option value="Counter-Strike 2">Counter-Strike 2</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="collectionCategory">Category</label>
+                            <select id="collectionCategory">
+                                <option value="Mixed">Mixed</option>
+                                <option value="Graphics Enhancement">Graphics Enhancement</option>
+                                <option value="Gameplay Overhaul">Gameplay Overhaul</option>
+                                <option value="Quality of Life">Quality of Life</option>
+                                <option value="Immersion Pack">Immersion Pack</option>
+                                <option value="Performance">Performance</option>
+                                <option value="Content Addition">Content Addition</option>
+                                <option value="Bug Fixes">Bug Fixes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collectionTags">Tags (comma separated)</label>
+                        <input type="text" id="collectionTags" placeholder="e.g. graphics, immersive, realistic">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="collectionPublic" checked>
+                            Make this collection public
+                        </label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" onclick="closeCreateCollectionModal()" class="btn btn-outline">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Collection</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="collections.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

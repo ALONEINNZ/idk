@@ -1,0 +1,51 @@
+<svg width="180" height="50" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Modern gradient -->
+    <linearGradient id="modernGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="modernGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Modern geometric icon -->
+  <g transform="translate(25,25)">
+    <!-- Hexagon base -->
+    <polygon points="0,-15 13,-7.5 13,7.5 0,15 -13,7.5 -13,-7.5" 
+             fill="url(#modernGradient)" 
+             filter="url(#modernGlow)" 
+             opacity="0.9"/>
+    
+    <!-- Inner craft symbol -->
+    <g fill="white">
+      <!-- Central diamond -->
+      <polygon points="0,-8 6,0 0,8 -6,0" opacity="0.9"/>
+      <!-- Corner accents -->
+      <circle cx="0" cy="-10" r="1.5"/>
+      <circle cx="8" cy="-5" r="1.5"/>
+      <circle cx="8" cy="5" r="1.5"/>
+      <circle cx="0" cy="10" r="1.5"/>
+      <circle cx="-8" cy="5" r="1.5"/>
+      <circle cx="-8" cy="-5" r="1.5"/>
+    </g>
+  </g>
+  
+  <!-- ExusCraft text with modern styling -->
+  <text x="55" y="32" 
+        font-family="'Segoe UI', Arial, sans-serif" 
+        font-size="22" 
+        font-weight="800" 
+        fill="url(#modernGradient)" 
+        letter-spacing="1px">
+    ExusCraft
+  </text>
+</svg>

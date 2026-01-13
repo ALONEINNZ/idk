@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { sendWelcomeEmail } = require('./utils/emailService');
 require('dotenv').config();
 
 const app = express();
@@ -536,6 +537,15 @@ app.post('/api/auth/register', async (req, res) => {
         
         users.push(user);
 
+        // Send welcome email
+        try {
+            await sendWelcomeEmail(email, username);
+            console.log(`Welcome email sent to ${email}`);
+        } catch (emailError) {
+            console.error('Failed to send welcome email:', emailError);
+            // Don't fail registration if email fails
+        }
+
         const token = generateToken(user._id);
 
         res.status(201).json({
@@ -720,9 +730,34 @@ app.post('/api/orders/confirm-purchase', auth, (req, res) => {
     }
 });
 
-// Serve frontend
+// Page Routes - serve the regular HTML for all pages
+app.get('/', (req, res) => {
+    res.redirect('/games');
+});
+
+app.get('/games', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/new-releases', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/deals', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/genres', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Serve frontend for any other routes
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index-premium.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {

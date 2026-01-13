@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExusCraft Centering Test</title>
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .test-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .test-box {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            margin: 1rem;
+            border: 2px solid var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-box">
+            <img src="logo-simple.svg" alt="ExusCraft" style="height: 60px; margin-bottom: 1rem;">
+            <h1>ExusCraft Centering Test</h1>
+            <p>This content should be perfectly centered on the page.</p>
+            <p>If you can see this text centered, the CSS fixes are working!</p>
+        </div>
+        
+        <div class="test-box">
+            <h2>Navigation Test</h2>
+            <div style="display: flex; justify-content: center; gap: 2rem; margin: 1rem 0;">
+                <span>All Mods</span>
+                <span>Games ▼</span>
+                <span>Free Mods</span>
+            </div>
+        </div>
+        
+        <div class="test-box">
+            <h2>Hero Section Test</h2>
+            <img src="logo.svg" alt="ExusCraft" style="height: 80px; margin-bottom: 1rem;">
+            <h1 style="font-size: 3rem; margin: 1rem 0;">ExusCraft</h1>
+            <p>Discover, create, and share extraordinary mods from the community.</p>
+            <button class="btn btn-primary">Explore Mods</button>
+        </div>
+    </div>
+</body>
+</html>

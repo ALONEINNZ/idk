@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExusCraft Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #0a0a0f; color: white; }
+        .test-section { margin: 20px 0; padding: 20px; background: #1a1a24; border-radius: 10px; }
+        button { padding: 10px 20px; margin: 5px; background: #6366f1; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #8b5cf6; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-menu { display: none; position: absolute; background: #1a1a24; border: 1px solid #333; border-radius: 5px; min-width: 200px; z-index: 1000; }
+        .dropdown-menu.show { display: block; }
+        .dropdown-menu a { display: block; padding: 10px; color: white; text-decoration: none; }
+        .dropdown-menu a:hover { background: #333; }
+        #result { margin-top: 20px; padding: 15px; background: #111118; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>ExusCraft Game Filtering Test</h1>
+    
+    <div class="test-section">
+        <h2>Game Dropdown Test</h2>
+        <div class="dropdown">
+            <button onclick="toggleGameDropdown()">Games ▼</button>
+            <div class="dropdown-menu" id="gameDropdown">
+                <a href="#" onclick="filterByGame('Minecraft')">Minecraft</a>
+                <a href="#" onclick="filterByGame('Skyrim')">Skyrim</a>
+                <a href="#" onclick="filterByGame('GTA V')">GTA V</a>
+                <a href="#" onclick="filterByGame('Cyberpunk 2077')">Cyberpunk 2077</a>
+                <a href="#" onclick="filterByGame('Rust')">Rust</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Direct Filter Test</h2>
+        <button onclick="testFilterByGame('Minecraft')">Filter Minecraft Mods</button>
+        <button onclick="testFilterByGame('Skyrim')">Filter Skyrim Mods</button>
+        <button onclick="testFilterByGame('Rust')">Filter Rust Mods</button>
+    </div>
+    
+    <div id="result">
+        <h3>Results will appear here...</h3>
+    </div>
+
+    <script>
+        // Mock data for testing
+        let mods = [
+            { _id: 'mod1', title: 'Ultra Graphics Overhaul', gameTitle: 'Skyrim', category: 'Graphics' },
+            { _id: 'mod2', title: 'Realistic Combat System', gameTitle: 'Minecraft', category: 'Gameplay' },
+            { _id: 'mod3', title: 'Immersive Sound Pack', gameTitle: 'Rust', category: 'Audio' },
+            { _id: 'mod4', title: 'Epic Quest Expansion', gameTitle: 'Skyrim', category: 'Maps' },
+            { _id: 'mod5', title: 'Building Tools Plus', gameTitle: 'Minecraft', category: 'Utility' }
+        ];
+        
+        let selectedGame = null;
+        
+        function toggleGameDropdown() {
+            const dropdown = document.getElementById('gameDropdown');
+            dropdown.classList.toggle('show');
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!e.target.closest('.dropdown')) {
+                    dropdown.classList.remove('show');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
+            
+            updateResult('Dropdown toggled');
+        }
+        
+        function filterByGame(gameTitle) {
+            selectedGame = gameTitle;
+            
+            // Close dropdown
+            document.getElementById('gameDropdown').classList.remove('show');
+            
+            // Filter mods by selected game
+            const filteredMods = mods.filter(mod => 
+                mod.gameTitle.toLowerCase().includes(gameTitle.toLowerCase())
+            );
+            
+            updateResult(`Filtered ${filteredMods.length} mods for ${gameTitle}:<br>` + 
+                        filteredMods.map(mod => `• ${mod.title} (${mod.category})`).join('<br>'));
+        }
+        
+        function testFilterByGame(gameTitle) {
+            filterByGame(gameTitle);
+        }
+        
+        function updateResult(message) {
+            document.getElementById('result').innerHTML = `<h3>Test Result:</h3><p>${message}</p>`;
+        }
+        
+        // Initialize
+        updateResult('ExusCraft filtering system ready. Click buttons to test functionality.');
+    </script>
+</body>
+</html>
